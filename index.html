@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Алтухов Андрей Игоревич — психолог, психотерапевт</title>
+<meta name="description" content="Клинический психолог Алтухов Андрей Игоревич. Работа с тревогой, отношениями, самооценкой. Запись на консультацию.">
+<style>
+  :root{
+    --bg:#faf7f2;
+    --accent:#7c9885;
+    --accent-dark:#5b7a63;
+    --text:#2e2e2e;
+    --muted:#6b6b6b;
+    --card:#ffffff;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(250,247,242,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1080px;margin:0 auto;}
+  .logo{font-weight:700;font-size:1.2rem;letter-spacing:0.5px;}
+  .nav-links{display:flex;gap:28px;font-size:0.95rem;}
+  .nav-links a:hover{color:var(--accent-dark);}
+  .btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    padding:12px 28px;
+    border-radius:30px;
+    font-weight:600;
+    transition:0.25s;
+    border:none;
+    cursor:pointer;
+    font-size:0.95rem;
+  }
+  .btn:hover{background:var(--accent-dark);transform:translateY(-2px);}
+  .burger{display:none;font-size:1.6rem;cursor:pointer;background:none;border:none;}
+
+  .hero{
+    padding:80px 0 60px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:2.6rem;
+    line-height:1.25;
+    margin-bottom:20px;
+    font-weight:700;
+  }
+  .hero p{
+    font-size:1.1rem;
+    color:var(--muted);
+    margin-bottom:28px;
+    max-width:480px;
+  }
+  .hero-photo{
+    width:100%;
+    aspect-ratio:4/5;
+    background:linear-gradient(135deg,#e4ded1,#cfd9cf);
+    border-radius:var(--radius);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);
+    font-size:0.9rem;
+  }
+
+  section{padding:70px 0;}
+  h2{
+    font-size:1.9rem;
+    margin-bottom:8px;
+  }
+  .section-sub{color:var(--muted);margin-bottom:36px;max-width:600px;}
+
+  .about-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;align-items:center;}
+  .about-photo{
+    aspect-ratio:1;
+    background:linear-gradient(135deg,#cfd9cf,#e4ded1);
+    border-radius:var(--radius);
+  }
+  .about-text p{margin-bottom:16px;color:var(--text);}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+  .badge{
+    background:#eef2ec;
+    color:var(--accent-dark);
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:0.85rem;
+    font-weight:600;
+  }
+
+  .edu-timeline{display:flex;flex-direction:column;gap:18px;margin-bottom:24px;}
+  .edu-item{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:20px;
+    align-items:start;
+  }
+  .edu-item .years{font-weight:700;color:var(--accent-dark);font-size:0.95rem;}
+  .edu-item .place{font-weight:600;margin-bottom:4px;}
+  .edu-item .detail{color:var(--muted);font-size:0.9rem;}
+
+  .courses-dropdown{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+    margin-bottom:24px;
+    overflow:hidden;
+  }
+  .courses-dropdown summary{
+    cursor:pointer;
+    padding:22px 26px;
+    font-weight:700;
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .courses-dropdown summary::-webkit-details-marker{display:none;}
+  .courses-dropdown summary::after{
+    content:'+';
+    font-size:1.4rem;
+    color:var(--accent-dark);
+    transition:0.25s;
+  }
+  .courses-dropdown[open] summary::after{content:'−';}
+  .courses-list{padding:0 26px 22px;}
+  .course-item{
+    border-top:1px solid #eef0ea;
+    padding:14px 0;
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:16px;
+  }
+  .course-item .year{font-weight:700;color:var(--accent-dark);font-size:0.88rem;}
+  .course-item .name{font-size:0.92rem;color:var(--text);}
+  .course-item .org{font-size:0.85rem;color:var(--muted);}
+
+  .exp-box{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:30px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+  }
+  .exp-box p{color:var(--muted);font-size:0.95rem;}
+
+  .topics-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .topic-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:26px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+    transition:0.25s;
+  }
+  .topic-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+  .topic-card h3{font-size:1.05rem;margin-bottom:8px;color:var(--accent-dark);}
+  .topic-card p{font-size:0.92rem;color:var(--muted);}
+
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .step{text-align:center;}
+  .step-num{
+    width:48px;height:48px;
+    background:var(--accent);
+    color:#fff;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+    margin:0 auto 14px;
+  }
+  .step h3{font-size:1rem;margin-bottom:6px;}
+  .step p{font-size:0.88rem;color:var(--muted);}
+
+  .method-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:40px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+  }
+  .method-card p{color:var(--muted);margin-bottom:14px;}
+
+  .pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+  .price-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:30px;
+    text-align:center;
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+    border:2px solid transparent;
+    transition:0.25s;
+  }
+  .price-card.featured{border-color:var(--accent);}
+  .price-card h3{font-size:1rem;color:var(--muted);margin-bottom:10px;}
+  .price-card .amount{font-size:2rem;font-weight:700;margin-bottom:6px;}
+  .price-card .duration{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
+
+  .faq details{
+    background:var(--card);
+    border-radius:12px;
+    padding:18px 22px;
+    margin-bottom:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.03);
+  }
+  .faq summary{cursor:pointer;font-weight:600;}
+  .faq p{margin-top:10px;color:var(--muted);font-size:0.92rem;}
+
+  .cta-final{
+    text-align:center;
+    background:linear-gradient(135deg,#7c9885,#5b7a63);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:60px 30px;
+  }
+  .cta-final h2{color:#fff;margin-bottom:14px;}
+  .cta-final p{color:rgba(255,255,255,0.85);margin-bottom:28px;}
+  .cta-final .btn{background:#fff;color:var(--accent-dark);}
+  .cta-final .btn:hover{background:#f0f0f0;}
+  .contact-icons{display:flex;justify-content:center;gap:20px;margin-top:24px;}
+  .contact-icons a{
+    background:rgba(255,255,255,0.15);
+    padding:10px 20px;border-radius:20px;
+    font-size:0.9rem;
+  }
+
+  footer{
+    padding:36px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:0.85rem;
+    border-top:1px solid rgba(0,0,0,0.06);
+  }
+
+  @media(max-width:860px){
+    .hero-grid,.about-grid{grid-template-columns:1fr;}
+    .hero-photo,.about-photo{order:-1;}
+    .topics-grid,.pricing-grid{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .edu-item,.course-item{grid-template-columns:1fr;}
+  }
+  @media(max-width:600px){
+    .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);flex-direction:column;padding:20px;gap:16px;border-bottom:1px solid rgba(0,0,0,0.06);}
+    .nav-links.open{display:flex;}
+    .burger{display:block;}
+    .hero h1{font-size:2rem;}
+    .topics-grid,.pricing-grid,.steps{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Андрей Алтухов</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">Обо мне</a>
+      <a href="#education">Образование</a>
+      <a href="#topics">Запросы</a>
+      <a href="#process">Как проходит работа</a>
+      <a href="#method">Метод</a>
+      <a href="#pricing">Стоимость</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <button class="burger" id="burgerBtn">&#9776;</button>
+    <a href="#contact" class="btn" style="display:none" id="headerBtn">Записаться</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Помогу вам справиться с тревогой, выгоранием и трудностями в отношениях</h1>
+      <p>Андрей Алтухов — клинический психолог, АСТ-, КПТ-, ДПДГ-терапевт. Онлайн и очно, конфиденциально, с уважением к вашему темпу.</p>
+      <a href="#contact" class="btn">Записаться на консультацию</a>
+    </div>
+    <div class="hero-photo">Фото специалиста</div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-photo"></div>
+    <div class="about-text">
+      <h2>Обо мне</h2>
+      <p>Меня зовут Андрей Алтухов. Я клинический психолог, работаю в подходах терапии принятия и ответственности (АСТ), когнитивно-поведенческой терапии (КПТ) и десенсибилизации и переработки движениями глаз (ДПДГ/EMDR) — методах с научно доказанной эффективностью.</p>
+      <p>Веду частную практику с 2021 года. Мне важно создать атмосферу доверия, в которой возможен искренний разговор без осуждения. Член Ассоциации контекстуально-поведенческой науки с 2023 года.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <h2>Образование</h2>
+    <p class="section-sub">Академическая подготовка и профессиональное развитие Андрея Алтухова.</p>
+    <div class="edu-timeline">
+      <div class="edu-item">
+        <div class="years">2015–2019</div>
+        <div>
+          <div class="place">Национальный исследовательский университет «Высшая школа экономики»</div>
+          <div class="detail">Факультет гуманитарных наук, Философия — бакалавриат</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="years">2019–2021</div>
+        <div>
+          <div class="place">Московская высшая школа социальных и экономических наук</div>
+          <div class="detail">Психология — магистратура</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="years">2021</div>
+        <div>
+          <div class="place">The University of Manchester</div>
+          <div class="detail">Psychology — Master of Arts in Counselling</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="years">2023</div>
+        <div>
+          <div class="place">Институт психотерапии и медицинской психологии им. Б.Д. Карвасарского</div>
+          <div class="detail">Клиническая психология — профпереподготовка</div>
+        </div>
+      </div>
+    </div>
+
+    <details class="courses-dropdown">
+      <summary>Курсы повышения квалификации (11)</summary>
+      <div class="courses-list">
+        <div class="course-item"><div class="year">2021</div><div><div class="name">«Терапия принятия и ответственности»</div><div class="org">Чистые когниции</div></div></div>
+        <div class="course-item"><div class="year">2021</div><div><div class="name">«Терапия принятия и ответственности. Продвинутый уровень»</div><div class="org">Чистые когниции</div></div></div>
+        <div class="course-item"><div class="year">2022</div><div><div class="name">«Введение в терапию. Терапевтические отношения»</div><div class="org">Ассоциация когнитивно-поведенческой психотерапии (АКПП)</div></div></div>
+        <div class="course-item"><div class="year">2022</div><div><div class="name">«Основы когнитивно-поведенческой психотерапии. Теория и практика»</div><div class="org">Ассоциация когнитивно-поведенческой психотерапии (АКПП)</div></div></div>
+        <div class="course-item"><div class="year">2022</div><div><div class="name">«Концептуализация в КПТ. Протоколы ассоциации когнитивно-поведенческой психотерапии»</div><div class="org">Ассоциация когнитивно-поведенческой психотерапии (АКПП)</div></div></div>
+        <div class="course-item"><div class="year">2022</div><div><div class="name">«Психотерапия взрослых с СДВГ»</div><div class="org">Евгения Дашкова</div></div></div>
+        <div class="course-item"><div class="year">2023</div><div><div class="name">Функциональный анализ в клинической практике</div><div class="org">Niklas Törneke</div></div></div>
+        <div class="course-item"><div class="year">2023</div><div><div class="name">Когнитивно-поведенческая терапия. Длительная программа обучения.</div><div class="org">Психодемия</div></div></div>
+        <div class="course-item"><div class="year">2023</div><div><div class="name">АКТ, фокусированная на травме</div><div class="org">Russ Harris</div></div></div>
+        <div class="course-item"><div class="year">2024</div><div><div class="name">Базовый тренинг EMDR (ДПДГ)</div><div class="org">Московский центр терапии EMDR (ДПДГ)</div></div></div>
+        <div class="course-item"><div class="year">2025</div><div><div class="name">Мотивационное интервьюирование в психотерапии ментальных расстройств</div><div class="org">Марат Агинян</div></div></div>
+      </div>
+    </details>
+
+    <div class="exp-box">
+      <p><strong>Опыт работы:</strong> ведёт частное психологическое консультирование с 2021 года по настоящее время. Член Ассоциации контекстуально-поведенческой науки с 2023 года.</p>
+    </div>
+  </div>
+</section>
+
+<section id="topics">
+  <div class="container">
+    <h2>С какими запросами я работаю</h2>
+    <p class="section-sub">Каждый случай индивидуален, но чаще всего ко мне обращаются с этими темами.</p>
+    <div class="topics-grid">
+      <div class="topic-card"><h3>Тревога и панические атаки</h3><p>Навязчивые переживания, страх, состояния тревоги и неуверенности.</p></div>
+      <div class="topic-card"><h3>Депрессия и апатия</h3><p>Подавленное настроение, упадок сил, потеря интереса к жизни.</p></div>
+      <div class="topic-card"><h3>Отношения</h3><p>Сложности в паре, одиночество, повторяющиеся паттерны в отношениях.</p></div>
+      <div class="topic-card"><h3>Самооценка</h3><p>Самокритика, чувство неполноценности, перфекционизм.</p></div>
+      <div class="topic-card"><h3>Травмы и ПТСР</h3><p>Проработка тяжёлого опыта, флешбеки, избегающее поведение.</p></div>
+      <div class="topic-card"><h3>Выгорание</h3><p>Хроническая усталость, потеря мотивации, прокрастинация.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <h2>Как проходит работа</h2>
+    <p class="section-sub">Прозрачный процесс от первой встречи до устойчивого результата.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Первая консультация</h3><p>Знакомимся, обсуждаем ваш запрос и формулируем цели.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>План работы</h3><p>Составляем стратегию и определяем частоту встреч.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Регулярные сессии</h3><p>Работаем над изменением мышления и поведения.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Закрепление результата</h3><p>Формируем навыки самопомощи для самостоятельной жизни без терапевта.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="container">
+    <h2>Метод работы</h2>
+    <div class="method-card">
+      <p><strong>Терапия принятия и ответственности (АСТ)</strong> — это современное направление психотерапии, выросшее из классического когнитивно-поведенческого подхода и обогащённое практиками осознанности. Она учит не бороться с трудными мыслями и чувствами, а выстраивать с ними новые, более гибкие отношения, что делает психику устойчивее к жизненным трудностям и помогает действовать в согласии со своими ценностями даже в сложных обстоятельствах.</p>
+      <p><strong>Когнитивно-поведенческая терапия (КПТ)</strong> — это структурированный метод работы с мышлением: вместе мы находим искажённые убеждения и автоматические мысли, которые вызывают тревогу и другие тягостные состояния, и постепенно меняем их на более реалистичные и поддерживающие.</p>
+      <p><strong>ДПДГ/EMDR</strong> — это специализированный подход для работы с травматичным опытом. С помощью билатеральной стимуляции (движений глаз) метод помогает психике переработать застрявшие воспоминания и снизить их эмоциональный заряд, запускaя естественные механизмы восстановления.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <h2>Стоимость</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Консультация очно в Москве</h3>
+        <div class="amount">6 000 ₽</div>
+        <div class="duration">50 минут</div>
+        <a href="#contact" class="btn">Записаться</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Консультация онлайн</h3>
+        <div class="amount">5 000 ₽</div>
+        <div class="duration">50 минут</div>
+        <a href="#contact" class="btn">Записаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <h2>Частые вопросы</h2>
+    <div class="faq">
+      <details>
+        <summary>Что будет происходить на сессиях?</summary>
+        <p>Мы начнём с обсуждения вашего запроса и целей, а дальше будем работать с мыслями, эмоциями и поведением с помощью АСТ, КПТ или ДПДГ — в зависимости от того, что подходит именно вашей ситуации.</p>
+      </details>
+      <details>
+        <summary>Как долго длится психотерапия?</summary>
+        <p>Длительность индивидуальна: некоторым запросам достаточно нескольких встреч, для более глубокой работы — например, с травмой или устойчивыми паттернами — может потребоваться несколько месяцев.</p>
+      </details>
+      <details>
+        <summary>Как часто нужно ходить?</summary>
+        <p>Оптимальный режим — раз в неделю, особенно на начальном этапе. Со временем частоту можно снижать по мере продвижения к результату.</p>
+      </details>
+      <details>
+        <summary>В каком формате можно работать?</summary>
+        <p>Провожу консультации как очно в Москве, так и онлайн — формат можно выбрать исходя из вашего удобства, эффективность работы от этого не снижается.</p>
+      </details>
+      <details>
+        <summary>Как помогает психотерапия?</summary>
+        <p>Терапия помогает лучше понимать свои эмоции и мысли, менять непродуктивные паттерны поведения и находить более устойчивые способы справляться с трудностями, тревогой и последствиями травматичного опыта.</p>
+      </details>
+      <details>
+        <summary>Сотрудничаете ли вы с психиатрами?</summary>
+        <p>Да, при необходимости медикаментозной поддержки я направляю к проверенному психиатру или работаю в связке с вашим лечащим врачом.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="cta-final">
+      <h2>Готовы сделать первый шаг?</h2>
+      <p>Напишите мне, и мы подберём удобное время для первой консультации.</p>
+      <a href="https://t.me/username" class="btn">Написать в Telegram</a>
+      <div class="contact-icons">
+        <a href="mailto:mail@example.com">Email</a>
+        <a href="tel:+70000000000">Телефон</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Андрей Алтухов. Психологическая консультация не является медицинской услугой и не заменяет консультацию врача-психиатра.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burgerBtn').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>
